@@ -296,7 +296,7 @@ int locateItem(const struct Item item[], int NoOfRecs, int sku, int* index) {
 	int i;
 	for (i = 0; i < NoOfRecs; i++) {
 		if (sku == item[i].sku) { //when should we use "==" and when should we use "=", in this case if use
-								  //(sku=item[i].sku), the result of SKU=732 will be "Found the item 999 at index:20" 
+					  //(sku=item[i].sku), the result of SKU=732 will be "Found the item 999 at index:20" 
 			*index = i;
 			FoundOrNot = 1;
 		}
@@ -366,7 +366,8 @@ void addOrUpdateItem(struct Item item[], int *NoOfRecs) { // *NoOfRecs= &GNoOfRe
 	SKU = getIntLimited(SKU_MIN, SKU_MAX);
 	FoundOrNot = locateItem(item, *NoOfRecs, SKU, &searchIndex);
 	if (FoundOrNot == 0) {
-		addItem(item,NoOfRecs,SKU);//why we cannot use *NoOfRecs here,Maybe NoOfRecs itself is an address, so we don't need to add '&'
+		addItem(item,NoOfRecs,SKU);//why we cannot use *NoOfRecs here,Maybe NoOfRecs itself 
+		                           //is an address, so we don't need to add '&'
 	}
 	else {
 		displayItem(item[searchIndex], FORM);
